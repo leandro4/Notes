@@ -1,6 +1,8 @@
 package com.leandrogon.notes.api
 
 import com.leandrogon.notes.model.Note
+import com.leandrogon.notes.model.responses.NotesListResponse
+import io.reactivex.Observable
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -31,19 +33,19 @@ object NotesService {
         return okHttpClient.build()
     }
 
-    fun getNotes(): Single<List<Note>> {
+    fun getNotes(): Observable<NotesListResponse> {
         return notesApi.getNotes()
     }
 
-    fun updateNote(note: Note): Single<Note> {
+    fun updateNote(note: Note): Observable<Note> {
         return notesApi.updateNote(note.id!!, note)
     }
 
-    fun createNote(note: Note): Single<Note> {
+    fun createNote(note: Note): Observable<Note> {
         return notesApi.createNote(note)
     }
 
-    fun deleteNote(noteId: String): Single<Note> {
+    fun deleteNote(noteId: String): Observable<Note> {
         return notesApi.deleteNote(noteId)
     }
 }
