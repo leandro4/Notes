@@ -8,7 +8,7 @@ import retrofit2.http.*
 interface NotesApi {
 
     @GET(UtilUrl.NOTES)
-    fun getNotes(@Body note: Note) : Observable<List<Note>>
+    fun getNotes() : Single<List<Note>>
 
     @PUT(UtilUrl.NOTE)
     fun updateNote(@Path("noteId") noteId: String, @Body note: Note) : Single<Note>
