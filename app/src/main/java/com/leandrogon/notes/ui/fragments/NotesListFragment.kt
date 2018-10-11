@@ -1,5 +1,6 @@
 package com.leandrogon.notes.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -9,7 +10,9 @@ import com.leandrogon.notes.R
 import com.leandrogon.notes.model.Note
 import com.leandrogon.notes.mvp.presenters.NotesListPresenter
 import com.leandrogon.notes.mvp.views.NotesListView
+import com.leandrogon.notes.ui.activities.NoteDetailActivity
 import com.leandrogon.notes.ui.adapters.NotesListAdapter
+import com.leandrogon.notes.utils.Constants
 import kotlinx.android.synthetic.main.fragment_notes_list.*
 
 class NotesListFragment: BaseMvpFragment(), NotesListView, NotesListAdapter.NoteListener {
@@ -23,8 +26,21 @@ class NotesListFragment: BaseMvpFragment(), NotesListView, NotesListAdapter.Note
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setProgressView()
+        startPresenter()
+        startUI()
+    }
+
+    private fun startPresenter() {
         presenter.attachMvpView(this)
         presenter.getNotes()
+    }
+
+    private fun startUI() {
+        fabCreate.setOnClickListener(this::createNewNote)
+    }
+
+    private fun createNewNote(view: View) {
+        startActivityForResult(Intent(context, NoteDetailActivity::class.java), Constants.REQUEST_CODE_CREATE_NOTE)
     }
 
     private fun setProgressView() {

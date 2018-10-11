@@ -3,4 +3,10 @@
     <string name="warning_no_conection">Se ha perdido la conexión a internet</string>
     <string name="warning_generic_error">Hubo un error, intente mas tarde</string>
     <string name="empty_list">No hay Notas disponibles</string>
+    <string name="notes_list_title">My Notes</string>
+    <string name="note_detail_title_label">Title</string>
+    <string name="note_detail_content_label">Content</string>
+    <string name="note_detail_title_hint">Input the title...</string>
+    <string name="note_detail_content_hint">Input the note body...</string>
+    <string name="menu_create_title">Done</string>
 </resources>

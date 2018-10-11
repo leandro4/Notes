@@ -49,7 +49,7 @@ class NotesListAdapter(var notes: MutableList<Note>, var callback: NoteListener)
             titleTv = view.findViewById(R.id.titleTv)
             subtitleTv = view.findViewById(R.id.subtitleTv)
             deleteIv = view.findViewById(R.id.deleteIv)
-            containerView = view.findViewById(R.id.container)
+            containerView = view.findViewById(R.id.cardContainer)
         }
     }
 }
