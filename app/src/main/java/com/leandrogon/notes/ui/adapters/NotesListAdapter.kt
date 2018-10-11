@@ -38,6 +38,12 @@ class NotesListAdapter(var notes: MutableList<Note>, var callback: NoteListener)
         notifyItemInserted(notes.size - 1)
     }
 
+    fun deleteNote(note: Note) {
+        val index = notes.indexOf(note)
+        notes.removeAt(index)
+        notifyItemRemoved(index)
+    }
+
     class NotesListViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
 
         var titleTv: TextView

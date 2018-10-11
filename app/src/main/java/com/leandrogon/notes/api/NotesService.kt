@@ -1,6 +1,7 @@
 package com.leandrogon.notes.api
 
 import com.leandrogon.notes.model.Note
+import com.leandrogon.notes.model.responses.DeleteNoteResponse
 import com.leandrogon.notes.model.responses.NotesListResponse
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -45,7 +46,7 @@ object NotesService {
         return notesApi.createNote(note)
     }
 
-    fun deleteNote(noteId: String): Observable<Note> {
+    fun deleteNote(noteId: String): Observable<DeleteNoteResponse> {
         return notesApi.deleteNote(noteId)
     }
 }
