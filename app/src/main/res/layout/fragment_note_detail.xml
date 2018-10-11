@@ -14,11 +14,15 @@
 
     <EditText
         android:id="@+id/etTitle"
-        android:enabled="true"
         style="@style/EditTextNoteDetail"
         android:hint="@string/note_detail_title_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <View
+        android:background="@drawable/gradient_divisor_line"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"/>
 
     <TextView
         style="@style/TextViewLabel"
@@ -28,10 +32,13 @@
 
     <EditText
         android:id="@+id/etContent"
-        android:enabled="true"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:scrollbars="vertical"
+        android:inputType="textMultiLine"
         style="@style/EditTextNoteDetail"
         android:hint="@string/note_detail_content_hint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp" />
 
 </LinearLayout>
