@@ -31,7 +31,13 @@ class NotesListFragment: BaseMvpFragment(), NotesListView, NotesListAdapter.Note
         super.onViewCreated(view, savedInstanceState)
         startPresenter()
         startUI()
+
         presenter?.getNotes()
+        swipeRefresh.isRefreshing = true
+
+        swipeRefresh.setOnRefreshListener {
+            presenter?.getNotes()
+        }
     }
 
     override fun startPresenter() {
@@ -54,6 +60,11 @@ class NotesListFragment: BaseMvpFragment(), NotesListView, NotesListAdapter.Note
         rvNotes.layoutManager = LinearLayoutManager(context)
         adapter = NotesListAdapter(notes.toMutableList(), this)
         rvNotes.adapter = adapter
+    }
+
+    override fun hideProgressView() {
+        super.hideProgressView()
+        swipeRefresh.isRefreshing = false
     }
 
     override fun onViewClick(note: Note) {
