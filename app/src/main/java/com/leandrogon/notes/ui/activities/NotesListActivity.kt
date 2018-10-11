@@ -9,6 +9,9 @@ class NotesListActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setToolbarTitle(R.string.notes_list_title)
-        loadFragment(NotesListFragment())
+
+        val fragment = NotesListFragment()
+        fragment.activityProgress = this
+        loadFragment(fragment)
     }
 }

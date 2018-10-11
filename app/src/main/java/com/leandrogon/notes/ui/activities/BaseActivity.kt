@@ -3,10 +3,12 @@ package com.leandrogon.notes.ui.activities
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.leandrogon.notes.R
+import com.leandrogon.notes.ui.fragments.BaseMvpFragment
 import kotlinx.android.synthetic.main.activity_base_content.*
 
-abstract class BaseActivity: AppCompatActivity() {
+abstract class BaseActivity: AppCompatActivity(), BaseMvpFragment.ActivityProgress {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,5 +29,13 @@ abstract class BaseActivity: AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun showProgress() {
+        progressView.visibility = View.VISIBLE
+    }
+
+    override fun hideProgress() {
+        progressView.visibility = View.GONE
     }
 }

@@ -25,6 +25,8 @@
         <item name="android:layout_marginRight">@dimen/large_margin</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/darkText</item>
+        <item name="android:textColorHint">@color/darkText</item>
+        <item name="android:inputType">textCapSentences</item>
     </style>
 
 </resources>

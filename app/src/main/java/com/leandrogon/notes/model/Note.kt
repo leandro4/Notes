@@ -1,7 +1,7 @@
 package com.leandrogon.notes.model
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-class Note (var id: String?, var title: String?, var content: String?): Serializable {
-
-}
+@Parcelize
+class Note (var id: String?, var title: String?, var content: String?): Parcelable

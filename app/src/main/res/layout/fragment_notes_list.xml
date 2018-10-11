@@ -7,7 +7,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvNotes"
-        android:paddingBottom="@dimen/large_margin"
+        android:paddingBottom="@dimen/xxlarge_margin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"/>
@@ -28,16 +28,5 @@
         android:layout_margin="@dimen/medium_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <FrameLayout
-        android:id="@+id/progressView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryLigth">
-        <ProgressBar
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

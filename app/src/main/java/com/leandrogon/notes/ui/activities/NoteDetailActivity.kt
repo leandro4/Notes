@@ -11,6 +11,8 @@ class NoteDetailActivity: BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         supportActionBar?.setDisplayShowHomeEnabled(true);
 
-        loadFragment(NoteDetailFragment())
+        val fragment = NoteDetailFragment()
+        fragment.activityProgress = this
+        loadFragment(fragment)
     }
 }

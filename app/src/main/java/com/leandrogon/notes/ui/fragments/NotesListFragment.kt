@@ -1,5 +1,6 @@
 package com.leandrogon.notes.ui.fragments
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_notes_list.*
 
 class NotesListFragment: BaseMvpFragment(), NotesListView, NotesListAdapter.NoteListener {
 
-    var presenter: NotesListPresenter = NotesListPresenter()
+    var presenter: NotesListPresenter? = null
     var adapter: NotesListAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,14 +29,14 @@ class NotesListFragment: BaseMvpFragment(), NotesListView, NotesListAdapter.Note
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setProgressView()
         startPresenter()
         startUI()
+        presenter?.getNotes()
     }
 
-    private fun startPresenter() {
-        presenter.attachMvpView(this)
-        presenter.getNotes()
+    override fun startPresenter() {
+        presenter = NotesListPresenter()
+        presenter?.attachMvpView(this)
     }
 
     private fun startUI() {
@@ -46,10 +47,6 @@ class NotesListFragment: BaseMvpFragment(), NotesListView, NotesListAdapter.Note
         val intent = Intent(context, NoteDetailActivity::class.java)
         intent.putExtra(Constants.NOTE_DETAIL_MODE, Constants.CREATE_NOTE)
         startActivityForResult(intent, Constants.REQUEST_CODE_CREATE_NOTE)
-    }
-
-    private fun setProgressView() {
-        progressBar = progressView
     }
 
     override fun onNotesResponse(notes: List<Note>) {
@@ -71,7 +68,7 @@ class NotesListFragment: BaseMvpFragment(), NotesListView, NotesListAdapter.Note
                 .setTitle(resources.getString(R.string.generic_warning_title))
                 .setMessage(resources.getString(R.string.delete_note_message_dialog))
                 .setNegativeButton(resources.getString(R.string.generic_cancel_button), null)
-                .setPositiveButton(resources.getString(R.string.generic_accept_button)) { _,_ -> presenter.deleteNote(note) }.create()
+                .setPositiveButton(resources.getString(R.string.generic_accept_button)) { _,_ -> presenter?.deleteNote(note) }.create()
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.show()
     }
@@ -81,10 +78,38 @@ class NotesListFragment: BaseMvpFragment(), NotesListView, NotesListAdapter.Note
     }
 
     override fun onErrorCode(message: String) {
+        showErrorMessage(getString(R.string.generic_error_message))
     }
 
     override fun onDestroy() {
-        presenter.dettachMvpView()
+        presenter?.dettachMvpView()
         super.onDestroy()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+            data?.let {
+                when (requestCode) {
+                    Constants.REQUEST_CODE_CREATE_NOTE -> {
+                        val note = it.getParcelableExtra(Constants.NOTE_DETAIL_EXTRA) as Note
+                        addNote(note)
+                    }
+                    Constants.REQUEST_CODE_EDIT_NOTE -> {
+                        val note = it.getParcelableExtra(Constants.NOTE_DETAIL_EXTRA) as Note
+                        updateNote(note)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun updateNote(note: Note) {
+        adapter?.updateNote(note)
+    }
+
+    private fun addNote(note: Note) {
+        adapter?.addNote(note)
     }
 }

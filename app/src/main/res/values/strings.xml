@@ -1,16 +1,21 @@
 <resources>
     <string name="app_name">Notes</string>
-    <string name="warning_no_conection">Se ha perdido la conexión a internet</string>
-    <string name="warning_generic_error">Hubo un error, intente mas tarde</string>
-    <string name="empty_list">No hay Notas disponibles</string>
+    <string name="warning_no_conection">Internet connection has been lost</string>
+    <string name="empty_list">There are no Notes :(</string>
     <string name="notes_list_title">My Notes</string>
     <string name="note_detail_title_label">Title</string>
     <string name="note_detail_content_label">Content</string>
-    <string name="note_detail_title_hint">Input the title...</string>
-    <string name="note_detail_content_hint">Input the note body...</string>
+    <string name="note_detail_title_hint">Input the title&#8230;</string>
+    <string name="note_detail_content_hint">Input the note body&#8230;</string>
     <string name="menu_create_title">Done</string>
     <string name="generic_warning_title">Caution!</string>
+    <string name="generic_error_message">There was an error, retry later</string>
     <string name="delete_note_message_dialog">Do you want to remove this note?</string>
     <string name="generic_accept_button">Accept</string>
     <string name="generic_cancel_button">Cancel</string>
+    <string name="update_note_title">Update note</string>
+    <string name="update_note_message">Are you sure you want to save new data?</string>
+    <string name="updated_note_title">Cool!</string>
+    <string name="updated_note_message">The note has been updated successfully</string>
+    <string name="empty_fields_title">All fields are mandatory</string>
 </resources>

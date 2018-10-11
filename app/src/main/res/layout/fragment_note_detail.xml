@@ -14,8 +14,7 @@
 
     <EditText
         android:id="@+id/etTitle"
-        android:lines="1"
-        android:enabled="false"
+        android:enabled="true"
         style="@style/EditTextNoteDetail"
         android:hint="@string/note_detail_title_hint"
         android:layout_width="match_parent"
@@ -29,7 +28,7 @@
 
     <EditText
         android:id="@+id/etContent"
-        android:enabled="false"
+        android:enabled="true"
         style="@style/EditTextNoteDetail"
         android:hint="@string/note_detail_content_hint"
         android:layout_width="match_parent"

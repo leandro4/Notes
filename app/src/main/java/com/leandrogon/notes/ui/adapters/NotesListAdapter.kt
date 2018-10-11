@@ -44,6 +44,13 @@ class NotesListAdapter(var notes: MutableList<Note>, var callback: NoteListener)
         notifyItemRemoved(index)
     }
 
+    fun updateNote(note: Note) {
+        val index = notes.indexOfFirst { it.id == note.id }
+        notes[index].title = note.title
+        notes[index].content = note.content
+        notifyItemChanged(index)
+    }
+
     class NotesListViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
 
         var titleTv: TextView
